@@ -1,0 +1,166 @@
+femheart HEART
+{
+  mesh = 16_smallest.vtk;
+  fibers = 16_smallest.fibers;
+  heart_regions = 1;
+
+  // conductivities
+  sigma_m = 1 1 1;
+  //sigma_m = 0.133417721518987 0.0176061776061776 0.0176061776061776;
+
+  dt = 1 ms;//0.01
+  reaction = blah;
+
+  end_time = 500 ms;
+  output_rate = 10 ms;//0.1
+
+  init_vm = -83.00 mV;
+
+  // Right bundle branch block (RBBB)
+  //stimulus = lv1 lv2 lv3 lv4;
+
+  // Left bundle branch block (LBBB)
+  //stimulus = rv1 rv2 rv3;
+
+  // 7 stimulus protocol
+  stimulus = lv1 lv2 lv3 lv4 rv1 rv2 rv3;
+
+  // Niederer
+  //stimulus = lowerLeft;
+
+}
+
+blah REACTION {
+  method = BetterTT06;
+  cellTypes = 1;
+}
+
+lv1 STIMULUS {
+  //bcl = 50 ms;
+  n = 1;
+  start=0;
+  duration=2;
+  strength=35.71429;
+  where=lv_bap;
+}
+
+lv2 STIMULUS {
+  //bcl = 50 ms;
+  n = 1;
+  start=0;
+  duration=2;
+  strength=35.71429;
+  where=lv_ms;
+}
+
+lv3 STIMULUS {
+  //bcl = 50 ms;
+  n = 1;
+  start=0;
+  duration=2;
+  strength=35.71429;
+  where=lv_mp1;
+}
+
+lv4 STIMULUS {
+  //bcl = 50 ms;
+  n = 1;
+  start=0;
+  duration=2;
+  strength=35.71429;
+  where=lv_mp2;
+}
+
+rv1 STIMULUS {
+  //bcl = 50 ms;
+  n = 1;
+  start=0;
+  duration=2;
+  strength=35.71429;
+  where=rv_fw1;
+}
+
+rv2 STIMULUS {
+  //bcl = 50 ms;
+  n = 1;
+  start=0;
+  duration=2;
+  strength=35.71429;
+  where=rv_fw2;
+}
+
+rv3 STIMULUS {
+  //bcl = 50 ms;
+  n = 1;
+  start=0;
+  duration=2;
+  strength=35.71429;
+  where=rv_ms;
+}
+
+lowerLeft STIMULUS {
+  start=0;
+  duration=2;
+  strength=35.71429;
+  where=lower;
+}
+
+lower REGION {
+  type = box;
+  lower = 0 0 0;
+  upper = 1.5 1.5 1.5;
+}
+
+lv_bap REGION {
+  type = ball;
+  center = -65 -15 50;
+  radius = 3.0;
+}
+
+lv_ms REGION {
+  type = ball;
+  center = -90 33 44;
+  radius = 3.0;
+}
+
+lv_mp1 REGION {
+  type = ball;
+  center = -75 35 5;
+  radius = 3.0;
+}
+
+lv_mp2 REGION {
+  type = ball;
+  center = -113 24 0;
+  radius = 3.0;
+}
+
+lv_mid_inf REGION {
+    type = ball;
+    center = -60 0 55;
+    radius = 2.0;
+}
+
+lv_mid_inf_lat REGION {
+    type = ball;
+    center = -58 -23 30;
+    radius = 2.0;
+}
+
+rv_fw1 REGION {
+  type = ball;
+  center = -60 91 12;
+  radius = 3.0;
+}
+
+rv_fw2 REGION {
+  type = ball;
+  center = -75 62 58;
+  radius = 3.0;
+}
+
+rv_ms REGION {
+  type = ball;
+  center = -94 40 47;
+  radius = 3.0;
+}

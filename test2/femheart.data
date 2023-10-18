@@ -1,0 +1,64 @@
+femheart HEART
+{
+  mesh = Niederer_bm_re0_0.vtk;
+  fibers = Niederer_bm_re0_0.fiber;
+  sheet = Niederer_bm_re0_0.sheet;
+  transverse = Niederer_bm_re0_0.transverse;
+  heart_regions = 1;
+  //material = cell.material;
+
+  // conductivities
+  //sigma_m = 1 1 1;
+  sigma_m = 0.133417721518987 0.0176061776061776 0.0176061776061776;
+
+  dt = 0.001 ms;
+  reaction = blah blah2;
+
+  end_time = 100 ms;
+  output_rate = 1 ms;
+
+  init_vm = -83.00 mV;
+
+  // Right bundle branch block (RBBB)
+  //stimulus = lv1 lv2 lv3 lv4;
+
+  // Left bundle branch block (LBBB)
+  //stimulus = rv1 rv2 rv3;
+
+  // 7 stimulus protocol
+  //stimulus = lv1 lv2 lv3 lv4 rv1 rv2 rv3;
+
+  // Niederer
+  stimulus = lowerLeft;
+
+}
+
+blah REACTION {
+  method = BetterTT06;
+  //method = Passive;
+  //method = Grandi;
+  cellTypes = 1;
+}
+
+blah2 REACTION {
+  //method = BetterTT06;
+  //method = Passive;
+  method = Grandi;
+  cellTypes = 2;
+}
+
+
+lowerLeft STIMULUS {
+  start=0;
+  duration=2;
+  strength=35.71429;
+  where=lower;
+}
+
+lower REGION {
+  type = box;
+  lower = 0 0 0;
+  upper = 1.5 1.5 1.5;
+}
+
+

@@ -1,0 +1,41 @@
+# Options for the Krylov solver
+-ksp_view
+#-ksp_monitor
+-ksp_converged_reason
+
+# Options for the preconditioner
+-ksp_norm_type unpreconditioned #preconditioned,unpreconditioned,natural
+
+-pc_type asm #none #asm
+-pc_asm_type basic #restrict
+-pc_asm_overlap 1
+
+-sub_pc_type icc #cholesky #icc #ilu
+-sub_pc_factor_levels 0 #icc(k)
+#-sub_pc_factor_mat_ordering_type qmd
+
+-ksp_atol 1e-10
+-ksp_rtol 1e-8
+-ksp_monitor_true_residual
+
+#-ksp_view_mat ::ascii_matlab
+#-ksp_view_rhs ::ascii_matlab
+
+
+
+
+#-ksp_initial_guess_nonzero false
+#-ksp_pc_side right
+#-sub_pc_factor_mat_ordering_type rcm
+#-pc_asm_overlap 2
+#-mat_view ::ascii_matlab
+#-ksp_type gmres
+#-ksp_pc_side right
+#-ksp_initial_guess_nonzero FALSE
+
+
+#-sub_pc_factor_levels - number of levels of fill for ICC(k)
+#-sub_pc_factor_in_place - only for ICC(0) with natural ordering, reuses the space of the matrix for its factorization (overwrites original matrix)
+#-sub_pc_factor_fill - expected amount of fill in factored matrix compared to original matrix, nfill > 1
+#-sub_pc_factor_mat_ordering_type <natural,nd,1wd,rcm,qmd> - set the row/column ordering of the factored matrix
+
