@@ -1,0 +1,66 @@
+femheart HEART
+{
+  mesh = Niederer_bm_re0_0.vtk;
+  fiber = Niederer_bm_re0_0.fiber;
+  sheet = Niederer_bm_re0_0.sheet;
+  trans = Niederer_bm_re0_0.transverse;
+  //anatomy = Niedererb_re0.anatomy;
+  anatomy = an;
+
+  // conductivities
+  //sigma_m = 1 1 1;
+  sigma_m = 0.133417721518987 0.0176061776061776 0.0176061776061776;
+  points = 0 0 0 10 3.5 1.5;
+
+  paraview = 0;
+  glvis = 1;
+  //icell = 3;
+
+  dt = 0.001 ms;
+  reaction = ENDO EPI M ;
+
+  end_time = 10 ms;
+  output_rate = 1 ms;
+
+  init_vm = -83.00 mV;
+
+  // 7 stimulus protocol
+  //stimulus = lv1 lv2 lv3 lv4 rv1 rv2 rv3;
+
+  // Niederer
+  stimulus = lowerLeft;
+
+}
+
+ENDO REACTION {
+  method = BetterTT06;
+  cellTypes = 0;
+}
+
+M REACTION {
+  method = BetterTT06;
+  cellTypes = 1;
+}
+
+EPI REACTION {
+  method = BetterTT06;
+  cellTypes = 2;
+}
+
+
+
+
+lowerLeft STIMULUS {
+  start=0;
+  duration=2;
+  strength=35.71429;
+  where=lower;
+}
+
+lower REGION {
+  type = box;
+  lower = 0 0 0;
+  upper = 1.5 1.5 1.5;
+}
+
+
